@@ -13,19 +13,30 @@ function bp_fus_get_setting( $setting = '' ) {
 		return false;
 	}
 
-	if ( isset( buddypress()->fus->settings[$setting] ) ) {
-		$option = buddypress()->fus->settings[$setting];
+	$option = isset( buddypress()->fus->settings[$setting] ) ? buddypress()->fus->settings[$setting] : false;
+
+	// add defaults for threaded display setting
+	if ( 'thread_display' === $setting ) {
+		// no user setting yet
+		if ( false === $option ) {
+			// if threaded replies are allowed, default to that
+			if ( bbp_allow_threaded_replies() ) {
+				$option = 'threaded';
+
+			// otherwise, default to oldest linear display
+			} else {
+				$option = 'oldest';
+			}
+		}
 
 		// if user thread display option is threaded, but threading is disabled in
 		// bbPress, default to oldest linear display
-		if ( 'thread_display' === $setting && 'threaded' === $option && ! bbp_thread_replies() ) {
+		if ( 'threaded' === $option && ! bbp_allow_threaded_replies() ) {
 			$option = 'oldest';
 		}
-
-		return $option;
-	} else {
-		return false;
 	}
+
+	return $option;
 }
 
 /** HOOKS **********************************************************/
