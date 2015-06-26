@@ -237,7 +237,7 @@ class BP_Forum_User_Settings_Screens {
 
 			<div class="per_page">
 				<label for="per_page"><?php _e( 'Number of Posts to Show Per Page:', 'bp-fus' ); ?></label>
-				<select name="settings[per_page]" id="thread_display">
+				<select name="settings[per_page]" id="per_page">
 					<option value="" <?php selected( bp_fus_get_setting( 'per_page' ), '' ); ?>>Use Forum Default</option>
 					<option value="5" <?php selected( bp_fus_get_setting( 'per_page' ), '5' ); ?>>Show 5 posts per page</option>
 					<option value="10" <?php selected( bp_fus_get_setting( 'per_page' ), '10' ); ?>>Show 10 posts per page</option>
