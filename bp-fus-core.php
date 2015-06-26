@@ -264,6 +264,37 @@ class BP_Forum_User_Settings_Screens {
 
 		</form>
 
+		<script type="text/javascript">
+		jQuery(function($){
+			var per_page = $('#per_page'),
+				per_page_label = $('.per_page label'),
+				per_page_label_color = per_page_label.css('color');
+
+			if ( 'threaded' === $('#thread_display option').filter(':selected').val() ) {
+				per_page_toggle();
+			}
+
+			$( '#thread_display' ).change(function() {
+				if ( 'threaded' !== $(this).val() ) {
+					per_page_toggle( 'enabled' );
+				} else {
+					per_page_toggle();
+				}
+			});
+
+			function per_page_toggle( state ) {
+				state = state || 'disabled';
+
+				if ( 'disabled' === state ) {
+					per_page.prop( 'disabled', true );
+					per_page_label.css( 'color', '#aaa' );
+				} else {
+					per_page.prop( 'disabled', false );
+					per_page_label.css( 'color', per_page_label_color );
+				}
+			}
+		});
+		</script>
 	<?php
 	}
 }
