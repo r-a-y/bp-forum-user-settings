@@ -95,7 +95,7 @@ class BP_Forum_User_Settings {
 			'parent_url'      => $settings_link,
 			'parent_slug'     => bp_get_settings_slug(),
 			'screen_function' => array( 'BP_Forum_User_Settings_Screens', 'init' ),
-			'position'        => apply_filters( 'bp_fus_position', 30 ),
+			'position'        => apply_filters( 'bp_fus_position', 31 ),
 			'item_css_id'     => 'settings-forums'
 		) );
 	}
