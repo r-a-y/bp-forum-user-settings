@@ -246,7 +246,7 @@ class BP_Forum_User_Settings_Screens {
 					<option value="40" <?php selected( bp_fus_get_setting( 'per_page' ), '40' ); ?>>Show 40 posts per page</option>
 				</select>
 
-				<p class="description">
+				<p class="description no-js">
 					<?php _e( 'Use this option to set the number of posts to show in a thread before splitting the display into multiple pages.', 'bp-fus' ); ?>
 					<?php if ( bbp_allow_threaded_replies() ) : ?>
 						<?php _e( 'Note: If "Thread Display Mode" is set to "Threaded", this option does not take effect due to an incompatibility between the two modes.', 'bp-fus' ); ?>
@@ -267,6 +267,9 @@ class BP_Forum_User_Settings_Screens {
 		<script type="text/javascript">
 		jQuery(function($){
 			var per_page = $('#per_page');
+
+			// hide per page description when JS is on
+			per_page.parent().find( '.no-js' ).removeClass( 'no-js' ).hide();
 
 			if ( 'threaded' === $('#thread_display option').filter(':selected').val() ) {
 				per_page_toggle();
