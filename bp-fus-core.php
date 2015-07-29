@@ -231,8 +231,6 @@ class BP_Forum_User_Settings_Screens {
 						<option value="threaded" <?php selected( bp_fus_get_setting( 'thread_display' ), 'threaded' ); ?>>Threaded</option>
 					<?php endif; ?>
 				</select>
-
-				<p class="description"><?php _e( 'Here you can choose the display mode for threads.', 'bp-fus' ); ?></p>
 			</div>
 
 			<div class="per_page">
