@@ -266,9 +266,7 @@ class BP_Forum_User_Settings_Screens {
 
 		<script type="text/javascript">
 		jQuery(function($){
-			var per_page = $('#per_page'),
-				per_page_label = $('.per_page label'),
-				per_page_label_color = per_page_label.css('color');
+			var per_page = $('#per_page');
 
 			if ( 'threaded' === $('#thread_display option').filter(':selected').val() ) {
 				per_page_toggle();
@@ -283,14 +281,24 @@ class BP_Forum_User_Settings_Screens {
 			});
 
 			function per_page_toggle( state ) {
-				state = state || 'disabled';
+				state   = state || 'disabled';
+				message = per_page.parent().find( '#message' );
 
 				if ( 'disabled' === state ) {
 					per_page.prop( 'disabled', true );
-					per_page_label.css( 'color', '#aaa' );
+
+					if ( message.length ) {
+						message.show();
+					} else {
+						threaded_message =  $('<div/>', {
+							'id':'message',
+							'html':'<p><?php _e( 'This option is not available when thread display is set to "Threaded"', 'bp-fus' ); ?></p>',
+						});
+						per_page.before( threaded_message );
+					}
 				} else {
 					per_page.prop( 'disabled', false );
-					per_page_label.css( 'color', per_page_label_color );
+					message.hide();
 				}
 			}
 		});
